@@ -20,58 +20,64 @@
 
 let scelta = document.getElementById('scelta'); //creo variabile per poterla richiamare
 let bottone = document.getElementById('play'); //creo variabile per poterla richiamare
-
+let bombeGenerate = []
 
 bottone.addEventListener('click', function(){ 
     let livello = document.getElementById('scelta').value;
     let bloccoQuadrati = document.getElementById('blocco-quadrati');
     bloccoQuadrati.innerHTML='';
+    
     if(livello == "easy"){
         for(let i=1; i<=100; i++){
             bloccoQuadrati.innerHTML += '<div class="cella box">'+ i +'</div>';
-    }
+        }
     }else if (livello == "medium"){
         for(let k=1; k<=81; k++){
             bloccoQuadrati.innerHTML += '<div class="cella box_2">'+ k +'</div>';
-    }
+        }
     }else if(livello == "hard"){
         for(let j=1; j<=49; j++){
             bloccoQuadrati.innerHTML += '<div class="cella box_3">'+ j +'</div>';
         }
     }
 
-    let cella = document.getElementsByClassName('cella');//aggiungo colore al click
-        for(let index=0; index<cella.length; index++){
-            cella[index].addEventListener("click", function(){
-                messaggio = this.innerHTML
-                this.classList.add("azzurro")
-            })
-        }
+    aggiungoClickACelle()   
+
+    creaBombe()
+
+    console.log( bombeGenerate )
 });
 
 
 // Creo funzione per generare bombe
 let bombeTot = 16;
 
-function creaBombe(){
-    let bombeGenerate = [];
-    while(bombeGenerate.length < bombeTot){
+function creaBombe(){   
+
+    while(bombeGenerate.length < bombeTot)
+    {
         let nuovaBomba = (Math.floor(Math.random()* 100 + 1));
-    if(!valoreArr(bombeGenerate,nuovaBomba)){
-        bombeGenerate.push(nuovaBomba);           
-    }            
-}   
-console.log(bombeGenerate);
-    return bombeGenerate;
+            
+              
+        if( !bombeGenerate.includes( nuovaBomba ) )
+        {
+            bombeGenerate.push(nuovaBomba); 
+        }
+    } 
 }
 
-//controllo le doppie nell'array
-function valoreArr(arrayValore,valore){
-    for(let i=0; i<arrayValore.length;i++){
-        if(arrayValore==valore){
-            return true;
-        }
+function aggiungoClickACelle()
+{
+    let cella = document.getElementsByClassName('cella');//aggiungo colore al click
+    
+    for(let index=0; index<cella.length; index++){
+        cella[index].addEventListener("click", function(){
+            const numero = parseInt( this.innerHTML )
+            this.classList.add("azzurro")
+            
+            //se numero è dentro bombeGenerate
+        })
     }
-    return false;
 }
+
 
