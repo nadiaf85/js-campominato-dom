@@ -8,7 +8,9 @@
 //difficoltà prescelta: le bombe.
 // I numeri nella lista delle bombe non possono essere duplicati.
 // In seguito l’utente clicca su una cella: se il numero è presente nella
-//lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l’utente può continuare a cliccare sulle altre celle.
+//lista dei numeri generati - abbiamo calpestato una bomba - la cella si 
+//colora di rosso e la partita termina, altrimenti la cella cliccata si colora
+// di azzurro e l’utente può continuare a cliccare sulle altre celle.
 // La partita termina quando il giocatore clicca su una bomba o raggiunge 
 //il numero massimo possibile di numeri consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè
@@ -48,13 +50,28 @@ bottone.addEventListener('click', function(){
 });
 
 
-// genero bombe
-// const posizioneBombeGenerate = [];
-// let numeroCelle=0;
+// Creo funzione per generare bombe
+let bombeTot = 16;
 
-// while(posizioneBombeGenerate.length < 16){
-//     let nuovaBomba = parseInt(Math.floor(Math.random() * numeroCelle) + 1);
-//     if(posizioneBombeGenerate.includes(posizioneBombeGenerate,nuovaBomba)){
-//         posizioneBombeGenerate.push(nuovaBomba);           
-//     }            
-// }
+function creaBombe(){
+    let bombeGenerate = [];
+    while(bombeGenerate.length < bombeTot){
+        let nuovaBomba = (Math.floor(Math.random()* 100 + 1));
+    if(!valoreArr(bombeGenerate,nuovaBomba)){
+        bombeGenerate.push(nuovaBomba);           
+    }            
+}   
+console.log(bombeGenerate);
+    return bombeGenerate;
+}
+
+//controllo le doppie nell'array
+function valoreArr(arrayValore,valore){
+    for(let i=0; i<arrayValore.length;i++){
+        if(arrayValore==valore){
+            return true;
+        }
+    }
+    return false;
+}
+
