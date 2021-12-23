@@ -20,7 +20,8 @@
 
 let scelta = document.getElementById('scelta'); //creo variabile per poterla richiamare
 let bottone = document.getElementById('play'); //creo variabile per poterla richiamare
-let bombeGenerate = []
+let bombeGenerate = [];
+let contPunt=0;
 
 bottone.addEventListener('click', function(){ 
     let livello = document.getElementById('scelta').value;
@@ -66,6 +67,10 @@ function creaBombe(){
     } 
 }
 
+function fineGioco(){
+    console.log("FINE");
+}
+
 function aggiungoClickACelle()
 {
     let cella = document.getElementsByClassName('cella');//aggiungo colore al click
@@ -73,11 +78,18 @@ function aggiungoClickACelle()
     for(let index=0; index<cella.length; index++){
         cella[index].addEventListener("click", function(){
             const numero = parseInt( this.innerHTML )
-            this.classList.add("azzurro")
-            
-            //se numero è dentro bombeGenerate
+            if(bombeGenerate.includes(numero)){
+                this.classList.add("bomba");
+                document.getElementById("risultato").innerHTML = `Hai perso!Fine gioco!` ;
+                fineGioco(); 
+            }else{
+                this.classList.add("azzurro");
+                document.getElementById("risultato").innerHTML = `Hai vinto!` ;
+            }
+            console.log(numero);
         })
     }
 }
+
 
 

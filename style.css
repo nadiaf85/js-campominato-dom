@@ -6,9 +6,13 @@
 
 main{
     width: 100%;
-    height: 800px;
+    height: 750px;
     background-color: aquamarine;
 
+}
+
+.container2{
+    padding: 60px;
 }
 
 .ms_logo img{
@@ -54,4 +58,9 @@ main{
 
 .bomba{
     background-color: red;
+}
+
+.result{
+    text-align: center;
+    margin-top: 30px;
 }
